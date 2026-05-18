@@ -1,38 +1,32 @@
-# Book Manager (BLoC + Dio)
+# Book Manager (Provider + http)
 
-Author:Israel Shimeles  
-ID:UGR/7570/16  
+Author: Israel Shimeles  
+ID: UGR/7570/16  
 Section: 1  
 
-An advanced Flutter application built to fulfill the CRUD API consumption assignment utilizing the asynchronous BLoC (Business Logic Component) stream pattern and the "Dio" networking client wrapper.
+A native Flutter application built to fulfill the CRUD API consumption assignment using the **Provider** state management pattern and the **http** network library.
 
 ## Architectural Architecture & Tech Stack
-State Management: Full stream-driven BLoC pattern using custom state emissions (`BookInitial`, `BookLoading`, `BookLoaded`, `BookError`) responding directly to localized dispatch routines.
-* **Networking Layer:** Robust `Dio` client engine handling request execution and automated payload decoding blocks.
-Target Public API: Open Library Search API (`https://openlibrary.org/search.json`).
+* State Management: Latest `Provider` solution utilizing `ChangeNotifierProvider` and responsive view layers handled by `Consumer` and `context.read`.
+* Networking Layer: Standard `http` package handles server handshakes using strict `Uri.https` mapping.
+* Target Public API:Open Library Search API (`https://openlibrary.org/search.json`).
 
 ## Fulfilling CRUD Requirements
-Create (C): Dispatches a `ToggleFavoriteEvent` to inject target entries into structured reactive state list layers.
-Read (R): Fires background asynchronous `SearchBooksEvent` tasks to stream matched data from the web interface.
-Update (U): Emits an explicit `UpdateBookNoteEvent` to overwrite metadata structures instantly without impacting UI performance.
-Delete (D):Removes specific items cleanly out of streamed array parameters using specialized screen control buttons.
+* Create (C):Adds a targeted `Book` model into a persistent local memory `_favorites` list.
+* Read (R): Asynchronously fetches and parses books matching search query strings from the server.
+* Update (U): Modifies the `personalNote` property of an explicit book instance through a dedicated editing view.
+* Delete (D):** Discards selected items from the user's `_favorites` collection via the dedicated **REMOVE** button.
 
-## Core Project Directory
-```text
+Core Project Directorytext
 lib/
-├── bloc/
-│   ├── book_bloc.dart       # Asynchronous stream logic engine
-│   ├── book_event.dart      # Strict structural operational definitions
-│   └── book_state.dart      # Immutable visual layout state wrappers
 ├── models/
-│   └── book.dart            # Custom entity definitions
+│   └── book.dart            # Safe schema parsing entity
+├── providers/
+│   └── book_provider.dart   # Local state machine & cache layer
 ├── screens/
 │   ├── edit_note_screen.dart
 │   ├── favorites_screen.dart
 │   └── home_screen.dart
 ├── services/
-│   └── api_service.dart     # Core Dio data communication center
-├── widgets/
-│   └── book_card.dart       # Modular presentation display item
+│   └── api_service.dart     # Custom http engine interface
 └── main.dart                # System initialization roots
-```

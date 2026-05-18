@@ -16,8 +16,8 @@ A native Flutter application built to fulfill the CRUD API consumption assignmen
 * Read (R): Asynchronously fetches and parses books matching search query strings from the server.
 * Update (U): Modifies the `personalNote` property of an explicit book instance through a dedicated editing view.
 * Delete (D):** Discards selected items from the user's `_favorites` collection via the dedicated **REMOVE** button.
-
-Core Project Directorytext
+```text
+Core Project Directory
 lib/
 ├── models/
 │   └── book.dart            # Safe schema parsing entity
@@ -30,3 +30,4 @@ lib/
 ├── services/
 │   └── api_service.dart     # Custom http engine interface
 └── main.dart                # System initialization roots
+```
